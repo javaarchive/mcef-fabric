@@ -120,10 +120,6 @@ public class ClientProxy extends BaseProxy {
             }
         }
 
-        if(ModList.get().isLoaded("webdisplays")) {
-            VIRTUAL = false; //TODO figure out why web displays is always virtual when this if statement is removed!!!
-        }
-
         if (VIRTUAL) {
             Log.warning("Going in virtual mode; couldn't download resources.");
             return;
