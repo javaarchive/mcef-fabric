@@ -95,7 +95,11 @@ public class ClientProxy extends BaseProxy {
 
         System.out.println("Updating MCEF missing files... ");
 
-        VIRTUAL = !cfg.downloadMissing(ipl);
+        if (!cfg.downloadMissing(ipl)) {
+            Log.warning("Going in virtual mode; couldn't download resources.");
+            VIRTUAL = true;
+            return;
+        }
 
         if (!cfg.updateFileListing(fileListing, true))
             Log.warning("There was a problem while updating file list. Uninstall may not delete all files.");
@@ -120,10 +124,8 @@ public class ClientProxy extends BaseProxy {
             }
         }
 
-        if (VIRTUAL) {
-            Log.warning("Going in virtual mode; couldn't download resources.");
+        if (VIRTUAL)
             return;
-        }
 
         CefSettings settings = new CefSettings();
         settings.windowless_rendering_enabled = true;
