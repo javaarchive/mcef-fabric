@@ -218,9 +218,7 @@ public class RemoteConfig {
             Log.info("Found %d missing resources. Downloading...", resources.size());
 
             for(Resource r: resources) {
-                if(!r.download(ipl)) {
-                    return false;
-                }
+                return r.download(ipl);
             }
             
             for(String r: extract) {
