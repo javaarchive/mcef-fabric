@@ -86,7 +86,7 @@ public class CefRenderer {
 
 
         RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
-        RenderSystem.setShaderTexture(0, texture_id_[0]);
+        RenderSystem.bindTexture(texture_id_[0]);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         // previously GL_QUADS for drawmode
         vb.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
@@ -96,7 +96,6 @@ public class CefRenderer {
         vb.vertex(x1, y2, 0.0).texture(0.0f, 0.0f).color(255, 255, 255, 255).next();
         t.draw();
         vb.end();
-        // GlStateManager._bindTexture(0);
     }
 
     protected void onPopupSize(Rectangle rect) {
