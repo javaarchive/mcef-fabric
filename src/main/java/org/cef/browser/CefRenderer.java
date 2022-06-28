@@ -86,7 +86,7 @@ public class CefRenderer {
 
 
         RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
-        RenderSystem.bindTexture(texture_id_[0]);
+        RenderSystem.setShaderTexture(0, texture_id_[0]);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         // previously GL_QUADS for drawmode
         vb.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
@@ -94,8 +94,7 @@ public class CefRenderer {
         vb.vertex(x2, y1, 0.0).texture(1.f, 1.f).color(255, 255, 255, 255).next();
         vb.vertex(x2, y2, 0.0).texture(1.f, 0.0f).color(255, 255, 255, 255).next();
         vb.vertex(x1, y2, 0.0).texture(0.0f, 0.0f).color(255, 255, 255, 255).next();
-        t.draw();
-        vb.end();
+        t.draw(); //t.end(); in mojmaps
     }
 
     protected void onPopupSize(Rectangle rect) {
